@@ -1,0 +1,193 @@
+/* Paleta de Cores Adaptada com Fundo Cinza */
+:root {
+    --bg-janela: #2b3240;
+    --bg-externo-cinza: #d1d5db; /* Novo fundo cinza-claro para destaque */
+    --laranja-painel: #ffa229;
+    --laranja-brilho: rgba(255, 162, 41, 0.4);
+    --verde-led: #13d974;
+    --verde-brilho: rgba(19, 217, 116, 0.5);
+    --vermelho-alarme: #ef4444;
+    --vermelho-brilho: rgba(239, 68, 68, 0.5);
+    --barra-fundo: #222733;
+    --texto-claro: #ffffff;
+    --texto-mutado: #78849e;
+}
+
+body {
+    background-image: url(/img/siderurgica.png);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+}
+
+/* Container Principal (Janela do Forno) */
+.forno-container {
+    background-color: var(--bg-janela);
+    width: 480px;
+    padding: 45px 35px;
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25); /* Sombra ajustada para fundo claro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Cabeçalho: LED + Texto */
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 35px;
+    width: 100%;
+}
+
+.panel-header h1 {
+    color: var(--texto-claro);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    margin: 0;
+}
+
+/* Indicador LED Dinâmico */
+.led {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.led-safe {
+    background-color: var(--verde-led);
+    box-shadow: 0 0 10px var(--verde-brilho);
+}
+
+.led-warning {
+    background-color: var(--laranja-painel);
+    box-shadow: 0 0 10px var(--laranja-brilho);
+}
+
+.led-danger {
+    background-color: var(--vermelho-alarme);
+    box-shadow: 0 0 12px var(--vermelho-brilho);
+    animation: piscarLed 0.5s infinite alternate;
+}
+
+/* Display Digital */
+.display-temperatura {
+    color: var(--laranja-painel);
+    font-size: 82px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.display-temperatura .graus {
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+/* Slot da Barra */
+.barra-escala {
+    background-color: var(--barra-fundo);
+    width: 100%;
+    height: 14px;
+    border-radius: 7px;
+    overflow: hidden;
+    margin-bottom: 35px;
+}
+
+/* Preenchimento Interno da Barra */
+.progresso-preenchimento {
+    height: 100%;
+    width: 0%; 
+    background-color: var(--laranja-painel);
+    box-shadow: 0 0 12px var(--laranja-brilho);
+    border-radius: 7px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
+}
+
+/* Painel de Alerta Visível na Sobrecarga */
+.alerta-oculto {
+    display: none;
+    width: 100%;
+    background-color: rgba(239, 68, 68, 0.15);
+    color: var(--vermelho-alarme);
+    border: 1px solid var(--vermelho-alarme);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Painel de Botões */
+.painel-comandos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* Botão Aquecer (Laranja) */
+.btn-aquecer {
+    background-color: var(--laranja-painel);
+    color: #1c212c;
+    border: none;
+}
+
+.btn-aquecer:hover:not(:disabled) {
+    background-color: #ffb147;
+    box-shadow: 0 0 15px rgba(255, 162, 41, 0.3);
+}
+
+.btn-aquecer:disabled {
+    background-color: #3b4354;
+    color: #5c667a;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Botão Resfriar (Contorno) */
+.btn-resfriar {
+    background-color: transparent;
+    color: var(--texto-mutado);
+    border: 1px solid #3b4354;
+}
+
+.btn-resfriar:hover {
+    color: var(--texto-claro);
+    border-color: #5c667a;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Animação do LED Crítico */
+@keyframes piscarLed {
+    from { opacity: 1; }
+    to { opacity: 0.4; }
+}

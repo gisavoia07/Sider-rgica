@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Fundição Forno 02</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="forno-container">
+        <div class="panel-header">
+            <span id="led-status" class="led led-safe"></span>
+            <h1>SISTEMA DE FUNDIÇÃO FORNO 02</h1>
+        </div>
+
+        <div class="display-temperatura">
+            <span id="temp-valor">0</span><span class="graus">°C</span>
+        </div>
+
+        <div class="barra-escala">
+            <div id="progresso-termico" class="progresso-preenchimento"></div>
+        </div>
+
+        <div id="painel-alerta" class="alerta-oculto"></div>
+
+        <div class="painel-comandos">
+            <button id="btn-aquecer" class="btn btn-aquecer" onclick="adicionarCalor()">AQUECER (+200°C)</button>
+            <button id="btn-resfriar" class="btn btn-resfriar" onclick="resfriamentoTotal()">RESFRIAMENTO TOTAL</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
